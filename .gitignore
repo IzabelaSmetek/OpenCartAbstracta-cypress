@@ -1,0 +1,4 @@
+node_modules/
+cypress/
+!cypress/integration/OpenCartAbstracta.spec.js
+/package-lock.json
