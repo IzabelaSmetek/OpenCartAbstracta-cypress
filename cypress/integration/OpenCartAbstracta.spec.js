@@ -58,15 +58,55 @@ describe('OpenCartAbstracta demo tests', () =>
         cy.get('#form-review > div.alert.alert-success')
     }),
 
-    it('[w/o hover] ', () => {
-
+    it('Check if there is no wishlist tooltip without hover', () => {
+        cy.visit('http://opencart.abstracta.us/index.php?route=product/product&product_id=43')
+        cy.get('#content > div > div.col-sm-4 > div.btn-group > button:nth-child(1)')
+            .eq(0).invoke('show')
+            .wait(1000)
+            .should('not.have.attr','aria-describedby')
 
     }),
 
-    it('[w/o hover] ', () => {
-
-
+    it('[w/o hover] Add product to favourites while not logged in', () => {
+        //go to product page
+        cy.visit('http://opencart.abstracta.us/index.php?route=product/product&product_id=43')
+        //hover over wish list icon
+        //check there's no tool tip
+        //check the tool tip 
+        cy.get('#content > div > div.col-sm-4 > div.btn-group > button:nth-child(1)')
+        .eq(0).invoke('show')
+        .trigger('mouseover')
+        .wait(1000)
+        .should('have.attr','aria-describedby')
+        //click wish list icon
+        cy.click('#content > div > div.col-sm-4 > div.btn-group > button:nth-child(1)')
+        //check if there's success message
+        cy.get('body > div:nth-child(4) > div.alert.alert-success')
+        
+        
+        
     }),
+
+    it('there is no success', () => {
+        cy.visit('http://opencart.abstracta.us/index.php?route=product/product&product_id=43')
+        cy.get('[class="alert-success"]').should('not.exist')
+    }),
+
+
+    /*
+    it('[w/o hover] Use login button in header', () => {
+        //main page
+
+        //hover over my account button
+
+        //click my account
+
+        //hover over login
+
+        //click login
+
+
+    }), */
 
 /*
 
